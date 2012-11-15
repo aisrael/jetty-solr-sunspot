@@ -1,5 +1,5 @@
 This repository packages a ready to run solr server with standard example schema distributed with Solr.
-It uses jetty 8 server forthe application container.
+It uses Jetty 8 server for the application container.
 
 To start the Solr server, just run
 
