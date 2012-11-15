@@ -91,6 +91,21 @@
         </Call>
     </Ref>
 
+    <!-- Configure STDOUT/STDERR logging -->
+    <New id="ServerLog" class="java.io.PrintStream">
+      <Arg>
+        <New class="org.eclipse.jetty.util.RolloverFileOutputStream">
+          <Arg><SystemProperty name="jetty.logs" default="./logs"/>/yyyy_mm_dd.stderrout.log</Arg>
+          <Arg type="boolean">false</Arg>
+          <Arg type="int">90</Arg>
+          <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>GMT</Arg></Call></Arg>
+          <Get id="ServerLogName" name="datedFilename"/>
+        </New>
+      </Arg>
+    </New>
+
+    <Call class="java.lang.System" name="setErr"><Arg><Ref id="ServerLog"/></Arg></Call>
+    <Call class="java.lang.System" name="setOut"><Arg><Ref id="ServerLog"/></Arg></Call>
 
     <Call name="addBean">
       <Arg>
